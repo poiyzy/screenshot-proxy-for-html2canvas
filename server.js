@@ -65,7 +65,7 @@ server = http.createServer(function(req,res){
 });
 
 // Start our server
-server.listen(process.env.WEBSITEPORT || process.env.PORT || 8000, function() {
+server.listen(process.env.WEBSITEPORT || process.env.PORT || 18000, function() {
   var address = server.address();
   console.log("opened server on %j", address);
 });
