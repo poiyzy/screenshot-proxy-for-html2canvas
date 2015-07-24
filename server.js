@@ -42,11 +42,11 @@ server = http.createServer(function(req,res){
 
   // request the image url
   var req = new ImageFetcher(imageUrl);
-  req.getImage(function(err, imageRes, imageData) {
+  req.getImage(function(err, contentType, statusCode, imageData) {
     var responseData, imageContentType;
-    if ( !err && imageRes && imageRes.statusCode === 200 ) {
+    if ( !err && statusCode === 200 ) {
       res.setHeader('Content-Type', 'application/javascript');
-      imageContentType = imageRes.headers['content-type'];
+      imageContentType = contentType;
       responseData = 'data:'+imageContentType+';base64,'+imageData;
       res.write(responseData);
       res.end();
@@ -55,7 +55,7 @@ server = http.createServer(function(req,res){
     }
     else {
       console.log('Failed image:', imageUrl);
-      res.writeHead(imageRes && imageRes.statusCode || 400); // bad request
+      res.writeHead(statusCode || 400); // bad request
       responseData = JSON.stringify('error:Application error');
       res.write(callback+'('+responseData+')');
       res.end();

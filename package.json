@@ -27,6 +27,8 @@
     "url": "https://github.com/BugHerd/html2canvas-proxy.git"
   },
   "dependencies": {
+    "mime-types": "^2.1.3",
+    "mkdirp": "^0.5.1",
     "request": "2.9.x"
   },
   "engines": {
