@@ -45,12 +45,12 @@ server = http.createServer(function(req,res){
   req.getImage(function(err, contentType, statusCode, imageData) {
     var responseData, imageContentType;
     if ( !err && statusCode === 200 ) {
+      console.log('Sent image:', imageUrl);
       res.setHeader('Content-Type', 'application/javascript');
       imageContentType = contentType;
       responseData = 'data:'+imageContentType+';base64,'+imageData;
       res.write(responseData);
       res.end();
-      console.log('Sent image:', imageUrl);
       return;
     }
     else {
